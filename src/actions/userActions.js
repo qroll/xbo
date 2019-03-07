@@ -57,20 +57,14 @@ export const logout = () => {
 
 export const signup = form => {
   return dispatch => {
-    return API.post("/auth/signup", {
-      ...form
-    }).then(res => {
+    return API.post("/auth/signup", form).then(res => {
       if (res.data && res.data.error) {
-        return {
-          error: res.data.error
-        };
+        return { error: res.data.error };
       }
       if (res.status === 200) {
         dispatch({ type: "USER_LOGGED_IN" });
       }
-      return {
-        status: res.status
-      };
+      return { status: res.status };
     });
   };
 };

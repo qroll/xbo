@@ -11,9 +11,11 @@ export const checkUserSession = () => {
     dispatch({
       type: "USER_CHECK_SESSION"
     });
-
+    console.log("hi1");
     return API.get("/auth/user")
       .then(res => {
+        console.log("hi2");
+        console.log(res);
         if (res.status === 200) {
           dispatch({ type: "USER_LOGGED_IN", user: res.data });
         } else {
@@ -27,11 +29,24 @@ export const checkUserSession = () => {
   };
 };
 
+export const logout = () => {
+  return dispatch => {
+    return API.get("/auth/logout").then(res => {
+      console.log(res);
+      dispatch({ type: "USER_LOGGED_OUT" });
+    });
+  };
+};
+
 export const login = form => {
   return dispatch => {
-    return API.post("/auth/login", {
-      ...form
-    }).then(res => {
+    return API.post(
+      "/auth/login",
+      {},
+      {
+        auth: form
+      }
+    ).then(res => {
       if (res.data && res.data.error) {
         return {
           error: res.data.error

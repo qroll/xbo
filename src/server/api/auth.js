@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-// const LocalStrategy = require("passport-local").Strategy;
 const BasicStrategy = require("passport-http").BasicStrategy;
 
 const _ = require("lodash");
-const Promise = require("bluebird");
 const axios = require("axios");
 
 const User = require("../models/user");
@@ -83,8 +81,6 @@ passport.use(
 passport.use(
   "local-login",
   new BasicStrategy((username, password, done) => {
-    console.log("hey");
-    console.log(username, password);
     if (!username) {
       return done(null, false, { message: "No username provided" });
     }
@@ -147,12 +143,6 @@ router.post("/signup", passport.authenticate("local-signup"), (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local-login"), (req, res) => {
-  console.log("req.session", req.session);
-  console.log("req.session.cookie", req.session.cookie);
-  console.log("req.session.id", req.session.id);
-  console.log("req.sessionID", req.sessionID);
-  console.log(req.user);
-
   loginTasks(req, res);
 });
 
@@ -164,7 +154,6 @@ router.get("/logout", (req, res) => {
 // ======
 
 router.get("/connect/pushbullet/callback", (req, res) => {
-  console.log(req);
   axios
     .request({
       url: "https://api.pushbullet.com/oauth2/token",

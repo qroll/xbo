@@ -4,12 +4,10 @@ if (!process.env.NODE_ENV) {
 
 const express = require("express");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const mongoose = require("mongoose");
 const { uri } = require("./models/mongoose.js");
 const User = require("./models/user");
 

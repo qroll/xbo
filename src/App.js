@@ -3,18 +3,18 @@ import { Provider } from 'react-redux';
 import { Router, Link } from '@reach/router';
 import styled from 'styled-components';
 
-import SessionCheckModule from '../components/common/SessionCheckModule';
+import SessionCheckModule from './components/common/SessionCheckModule';
 
-import MainPage from '../components/MainPage';
-import SummaryPage from '../components/SummaryPage';
-import StreamPage from '../components/StreamPage';
-import Profile from '../components/Profile';
-import Organiser from '../components/Organiser';
-import Gallery from '../components/Gallery';
+import MainPage from 'src/pages/MainPage';
+import SummaryPage from 'src/pages/SummaryPage';
+import StreamPage from 'src/pages/StreamPage';
+import Profile from 'src/pages/Profile';
+import Organiser from 'src/pages/Organiser';
+import Gallery from 'src/pages/Gallery';
 
-import AboutPage from '../components/AboutPage';
+import AboutPage from 'src/pages/AboutPage';
 
-import configureStore from '../store';
+import configureStore from './store';
 
 let store = configureStore();
 
